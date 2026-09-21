@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'https://esm.sh/react@19.1.0';
-import { Canvas, extend, useFrame } from 'https://esm.sh/@react-three/fiber@9.1.2?external=react,react-dom,three';
-import { useGLTF, useTexture, Environment, Lightformer } from 'https://esm.sh/@react-three/drei@10.0.0?external=react,react-dom,three,@react-three/fiber';
-import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from 'https://esm.sh/@react-three/rapier@2.1.0?external=react,react-dom,three,@react-three/fiber';
-import { MeshLineGeometry, MeshLineMaterial } from 'https://esm.sh/meshline@3.3.1?external=three';
+import { Canvas, extend, useFrame } from 'https://esm.sh/@react-three/fiber@9.1.2?external=react,react-dom,three&deps=react@19.1.0,react-dom@19.1.0,three@0.176.0';
+import { useGLTF, useTexture, Environment, Lightformer } from 'https://esm.sh/@react-three/drei@10.0.0?external=react,react-dom,three,@react-three/fiber&deps=react@19.1.0,react-dom@19.1.0,three@0.176.0,@react-three/fiber@9.1.2';
+import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from 'https://esm.sh/@react-three/rapier@2.1.0?external=react,react-dom,three,@react-three/fiber&deps=react@19.1.0,react-dom@19.1.0,three@0.176.0,@react-three/fiber@9.1.2';
+import { MeshLineGeometry, MeshLineMaterial } from 'https://esm.sh/meshline@3.3.1?external=three&deps=three@0.176.0';
 import * as THREE from 'https://esm.sh/three@0.176.0';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
