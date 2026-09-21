@@ -1,0 +1,2846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aritra Mukhopadhyay — Portfolio</title>
+  <meta name="description"
+    content="Aritra Mukhopadhyay — Mechanical Engineering student, automotive fabricator, and graphic designer. KGEC Batch 2027.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --blue-0: #0B2540;
+      --blue-1: #0F2E4F;
+      --blue-2: #153A60;
+      --blue-3: #1F4C79;
+      --line: #DCE9F2;
+      --line-dim: #7FA0BE;
+      --line-faint: rgba(220, 233, 242, .14);
+      --amber: #E3A23C;
+      --amber-dim: #B98337;
+      --paper: #F2EDE1;
+      --paper-2: #E9E2D2;
+      --ink: #182338;
+      --ink-dim: #4C5A70;
+      --rule: #C9BFA6;
+      --display: 'Big Shoulders Display', sans-serif;
+      --sans: 'IBM Plex Sans', sans-serif;
+      --mono: 'IBM Plex Mono', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--blue-1);
+      color: var(--line);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit
+    }
+
+    img {
+      display: block;
+      max-width: 100%
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer
+    }
+
+    ::selection {
+      background: var(--amber);
+      color: var(--blue-0)
+    }
+
+    /* blueprint grid backdrop */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--line-faint) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-faint) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .9), rgba(0, 0, 0, .35) 60%, transparent);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .9), rgba(0, 0, 0, .35) 60%, transparent);
+    }
+
+    /* ============ NAV ============ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid transparent;
+      transition: background .3s ease, border-color .3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(11, 37, 64, .92);
+      backdrop-filter: blur(10px);
+      border-bottom-color: var(--line-faint)
+    }
+
+    .nav-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none
+    }
+
+    .nav-mark svg {
+      width: 30px;
+      height: 30px
+    }
+
+    .nav-mark-text {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .06em;
+      color: var(--line)
+    }
+
+    .nav-mark-text b {
+      color: var(--amber);
+      font-weight: 600
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      letter-spacing: .04em;
+      text-decoration: none;
+      color: var(--line-dim);
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--line);
+      border-color: var(--amber)
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      letter-spacing: .04em;
+      color: var(--blue-0);
+      background: var(--amber);
+      padding: 9px 18px;
+      text-decoration: none;
+      border: 1px solid var(--amber);
+      transition: background .2s, color .2s;
+    }
+
+    .nav-cta:hover {
+      background: transparent;
+      color: var(--amber)
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 6px
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--line)
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: var(--blue-0);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      gap: 22px;
+      transform: translateY(-100%);
+      transition: transform .35s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0)
+    }
+
+    .mobile-menu a {
+      font-family: var(--display);
+      font-size: 34px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--line)
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: var(--line);
+      font-size: 28px
+    }
+
+    /* ============ LAYOUT HELPERS ============ */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 120px 40px
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto
+    }
+
+    .sheet-tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      color: var(--line-dim);
+    }
+
+    .sheet-tag .no {
+      color: var(--amber)
+    }
+
+    .sheet-tag::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line-faint)
+    }
+
+    h2.title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(38px, 4.6vw, 64px);
+      line-height: .98;
+      letter-spacing: -.01em;
+      color: var(--line);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      font-size: 16.5px;
+      color: var(--line-dim);
+      max-width: 560px;
+      line-height: 1.75
+    }
+
+    .on-paper h2.title {
+      color: var(--blue-0);
+    }
+
+    .on-paper .lede {
+      color: var(--ink-dim)
+    }
+
+    .on-paper .sheet-tag {
+      color: var(--ink-dim)
+    }
+
+    .on-paper .sheet-tag::after {
+      background: var(--rule)
+    }
+
+    /* ============ HERO ============ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 160px 40px 100px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      max-width: 1180px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .title-block {
+      display: inline-grid;
+      grid-template-columns: repeat(4, auto);
+      border: 1px solid var(--line-dim);
+      margin-bottom: 30px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .05em;
+      color: var(--line-dim);
+    }
+
+    .title-block div {
+      padding: 7px 12px;
+      border-right: 1px solid var(--line-faint)
+    }
+
+    .title-block div:last-child {
+      border-right: none
+    }
+
+    .title-block b {
+      display: block;
+      color: var(--line);
+      font-weight: 600;
+      font-size: 11px;
+      margin-top: 2px
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(52px, 7.4vw, 108px);
+      line-height: .92;
+      letter-spacing: -.01em;
+      color: var(--line);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber)
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--line-dim);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 34px;
+    }
+
+    .hero-sub strong {
+      color: var(--line);
+      font-weight: 600
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .05em;
+      border: 1px solid var(--line-faint);
+      color: var(--line-dim);
+      padding: 5px 11px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .04em;
+      text-decoration: none;
+      padding: 14px 26px;
+      border: 1px solid var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background .2s, color .2s;
+    }
+
+    .btn-fill {
+      background: var(--amber);
+      color: var(--blue-0)
+    }
+
+    .btn-fill:hover {
+      background: transparent;
+      color: var(--amber)
+    }
+
+    .btn-line {
+      color: var(--line);
+      border-color: var(--line-dim)
+    }
+
+    .btn-line:hover {
+      border-color: var(--amber);
+      color: var(--amber)
+    }
+
+    .hero-draw {
+      position: relative
+    }
+
+    .hero-draw svg {
+      width: 100%;
+      height: auto;
+      overflow: visible
+    }
+
+    .blueline {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .blueline-dim {
+      stroke: var(--line-dim);
+      stroke-width: 1;
+      stroke-dasharray: 4 4
+    }
+
+    .blueline-amber {
+      stroke: var(--amber);
+      stroke-width: 1.4
+    }
+
+    .draw-anim {
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: draw 2.6s cubic-bezier(.4, 0, .2, 1) .3s forwards
+    }
+
+    .draw-anim.d2 {
+      animation-delay: .6s
+    }
+
+    .draw-anim.d3 {
+      animation-delay: 1s
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0
+      }
+    }
+
+    .dwg-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      fill: var(--line-dim);
+      letter-spacing: .03em
+    }
+
+    .dwg-label.amber {
+      fill: var(--amber)
+    }
+
+    /* ============ ABOUT (paper) ============ */
+    .on-paper {
+      background: var(--paper);
+      color: var(--ink)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      margin-top: 56px;
+      align-items: start
+    }
+
+    .frame {
+      border: 1px solid var(--ink);
+      position: relative;
+      box-shadow: 7px 7px 0 var(--rule);
+    }
+
+    .frame.portrait {
+      aspect-ratio: 4/5;
+      overflow: hidden
+    }
+
+    .frame.portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .ph-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background:
+        repeating-linear-gradient(45deg, rgba(24, 35, 56, .05) 0 1px, transparent 1px 14px);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .ph-inner svg {
+      width: 34px;
+      height: 34px;
+      opacity: .55
+    }
+
+    .ph-inner span {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-dim);
+      line-height: 1.6
+    }
+
+    .ph-inner code {
+      display: block;
+      color: var(--ink);
+      font-weight: 600;
+      margin-top: 2px
+    }
+
+    .about-bio p {
+      margin-bottom: 18px;
+      font-size: 16px;
+      color: var(--ink-dim);
+      line-height: 1.85
+    }
+
+    .about-bio strong {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .role-list {
+      list-style: none;
+      margin-top: 28px;
+      border-top: 1px solid var(--rule)
+    }
+
+    .role-list li {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14px;
+      align-items: baseline;
+    }
+
+    .role-list .role-org {
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .role-list .role-title {
+      color: var(--ink-dim)
+    }
+
+    .role-list .role-date {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-dim);
+      text-align: right
+    }
+
+    /* ============ PROJECTS ============ */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 56px;
+      background: var(--line-faint)
+    }
+
+    .proj-card {
+      background: var(--blue-1);
+      padding: 36px
+    }
+
+    .proj-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px
+    }
+
+    .proj-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--amber);
+      letter-spacing: .05em
+    }
+
+    .proj-date {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--line-dim)
+    }
+
+    .proj-card h3 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      margin-bottom: 6px;
+      color: var(--line);
+      line-height: 1.05;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color .2s ease;
+    }
+
+    .proj-card h3:hover {
+      color: var(--amber);
+    }
+
+    .proj-card h3 .proj-link-arrow {
+      font-size: 18px;
+      opacity: 0.5;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .proj-card h3:hover .proj-link-arrow {
+      opacity: 1;
+      transform: translate(2px, -2px);
+      color: var(--amber);
+    }
+
+    .proj-org {
+      font-size: 12.5px;
+      color: var(--amber-dim);
+      font-family: var(--mono);
+      margin-bottom: 18px
+    }
+
+    .proj-frame {
+      aspect-ratio: 16/10;
+      margin-bottom: 18px;
+      border: 1px solid var(--line-faint);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: border-color .3s ease;
+    }
+
+    .proj-frame:hover {
+      border-color: var(--amber);
+    }
+
+    .proj-frame::after {
+      content: 'VIEW DOSSIER ↗';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(11, 37, 64, 0.92);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      padding: 4px 8px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 5;
+    }
+
+    .proj-frame:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .proj-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease
+    }
+
+    .proj-frame:hover img {
+      transform: scale(1.03)
+    }
+
+    .proj-frame .ph-inner {
+      background: repeating-linear-gradient(45deg, rgba(220, 233, 242, .04) 0 1px, transparent 1px 14px);
+      transition: background .3s ease;
+    }
+
+    .proj-frame:hover .ph-inner {
+      background: repeating-linear-gradient(45deg, rgba(227, 162, 60, .06) 0 1px, transparent 1px 14px);
+    }
+
+    .proj-frame .ph-inner svg {
+      opacity: .4;
+      stroke: var(--line-dim);
+      transition: opacity .3s, stroke .3s;
+    }
+
+    .proj-frame:hover .ph-inner svg {
+      opacity: .8;
+      stroke: var(--amber);
+    }
+
+    .proj-frame .ph-inner span {
+      color: var(--line-dim)
+    }
+
+    .proj-frame .ph-inner code {
+      color: var(--line)
+    }
+
+    .proj-card ul {
+      list-style: none;
+      font-size: 14.5px;
+      color: var(--line-dim);
+      line-height: 1.75
+    }
+
+    .proj-card ul li {
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 6px
+    }
+
+    .proj-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1px;
+      background: var(--amber)
+    }
+
+    .proj-open-btn {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid var(--line-faint);
+      color: var(--amber);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .06em;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .proj-open-btn:hover {
+      border-color: var(--amber);
+      background: rgba(227, 162, 60, 0.12);
+      color: var(--line);
+      transform: translateY(-1px);
+    }
+
+    /* ============ PROJECT DOSSIER MODAL ============ */
+    .proj-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(6, 18, 32, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .proj-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .proj-modal-container {
+      background: var(--blue-1);
+      border: 1px solid var(--line-dim);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(220, 233, 242, 0.12);
+      width: 100%;
+      max-width: 980px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transform: translateY(20px) scale(0.98);
+      transition: transform .28s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .proj-modal-overlay.open .proj-modal-container {
+      transform: translateY(0) scale(1);
+    }
+
+    .proj-modal-header {
+      background: var(--blue-0);
+      border-bottom: 1px solid var(--line-dim);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .proj-modal-titleblock {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .proj-modal-ref {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .proj-modal-ref .status-tag {
+      background: rgba(227, 162, 60, 0.15);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      padding: 2px 7px;
+      font-size: 9.5px;
+      font-weight: 600;
+    }
+
+    .proj-modal-title {
+      font-family: var(--display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--line);
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .proj-modal-subtitle {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--line-dim);
+    }
+
+    .proj-modal-close {
+      background: transparent;
+      border: 1px solid var(--line-faint);
+      color: var(--line-dim);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .05em;
+      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all .2s ease;
+      flex-shrink: 0;
+    }
+
+    .proj-modal-close:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      background: rgba(227, 162, 60, 0.1);
+    }
+
+    .modal-meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--line-faint);
+      border-bottom: 1px solid var(--line-faint);
+      flex-shrink: 0;
+    }
+
+    .modal-meta-cell {
+      background: var(--blue-2);
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .modal-meta-label {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: .08em;
+      color: var(--amber-dim);
+    }
+
+    .modal-meta-val {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--line);
+      line-height: 1.3;
+    }
+
+    .proj-modal-body {
+      overflow-y: auto;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--line);
+      background:
+        linear-gradient(rgba(15, 46, 79, 0.97), rgba(15, 46, 79, 0.97)),
+        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(220, 233, 242, 0.03) 31px, rgba(220, 233, 242, 0.03) 32px),
+        repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(220, 233, 242, 0.03) 31px, rgba(220, 233, 242, 0.03) 32px);
+    }
+
+    /* Media Slot - Top Right (wrapped with text) */
+    .modal-media-wrap-right {
+      float: right;
+      width: 360px;
+      max-width: 48%;
+      margin: 4px 0 18px 24px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .modal-media-wrap-right {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 20px 0;
+      }
+    }
+
+    /* Media Slot - Bottom Grid (2 slots side by side) */
+    .modal-bottom-media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 680px) {
+      .modal-bottom-media-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Common Media Slot Container (Photo / Video / Placeholder) */
+    .modal-media-slot {
+      border: 1px solid var(--line-faint);
+      background: var(--blue-0);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .modal-media-slot:hover {
+      border-color: var(--amber);
+    }
+
+    .modal-media-slot img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+      background: #061220;
+      transition: transform .3s ease;
+    }
+
+    .modal-media-slot img[src*=".gif"],
+    .modal-media-slot img.is-contain {
+      object-fit: contain;
+    }
+
+    .modal-media-slot:hover img {
+      transform: scale(1.02);
+    }
+
+    .modal-media-slot video {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+      background: #061220;
+    }
+
+    .modal-media-slot .slot-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 3;
+      background: rgba(11, 37, 64, 0.92);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: .06em;
+      padding: 2px 7px;
+      font-weight: 600;
+    }
+
+    .modal-media-slot .slot-caption {
+      padding: 9px 14px;
+      background: rgba(11, 37, 64, 0.96);
+      border-top: 1px solid var(--line-faint);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-media-slot .slot-caption span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .modal-media-slot .slot-caption .slot-type-tag {
+      color: var(--amber);
+      font-size: 9.5px;
+      letter-spacing: .05em;
+      flex-shrink: 0;
+      background: rgba(227, 162, 60, 0.12);
+      padding: 1px 6px;
+      border: 1px solid rgba(227, 162, 60, 0.3);
+    }
+
+    /* Blueprint Placeholder Slot */
+    .modal-media-slot.is-slot-placeholder {
+      aspect-ratio: 16/10;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background:
+        repeating-linear-gradient(45deg, rgba(220, 233, 242, 0.03) 0 1px, transparent 1px 16px),
+        var(--blue-0);
+      text-align: center;
+      padding: 20px;
+      border: 1px dashed var(--line-dim);
+    }
+
+    .modal-media-slot.is-slot-placeholder svg {
+      width: 34px;
+      height: 34px;
+      stroke: var(--line-dim);
+      opacity: 0.65;
+      transition: stroke .2s ease, opacity .2s ease, transform .2s ease;
+    }
+
+    .modal-media-slot.is-slot-placeholder:hover svg {
+      stroke: var(--amber);
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    .modal-media-slot.is-slot-placeholder .slot-ph-title {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--line);
+      letter-spacing: .04em;
+    }
+
+    .modal-media-slot.is-slot-placeholder .slot-ph-sub {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      color: var(--line-dim);
+      max-width: 85%;
+      line-height: 1.35;
+    }
+
+    .modal-media-slot.is-slot-placeholder code {
+      color: var(--amber);
+      font-size: 10px;
+      font-family: var(--mono);
+      background: rgba(15, 46, 79, 0.8);
+      padding: 2px 6px;
+      border: 1px solid var(--line-faint);
+    }
+
+    .modal-section-title {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      color: var(--amber);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .modal-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line-faint);
+    }
+
+    .modal-p {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--line);
+      margin-bottom: 12px;
+    }
+
+    .modal-p strong {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    .modal-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 12px 0 18px;
+    }
+
+    .modal-metric-card {
+      background: rgba(11, 37, 64, 0.7);
+      border: 1px solid var(--line-faint);
+      border-left: 3px solid var(--amber);
+      padding: 14px 16px;
+    }
+
+    .modal-metric-num {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--line);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .modal-metric-label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .04em;
+      color: var(--line-dim);
+    }
+
+    .modal-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 8px 0 16px;
+      background: rgba(11, 37, 64, 0.4);
+      border: 1px solid var(--line-faint);
+    }
+
+    .modal-spec-table th {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .06em;
+      color: var(--amber);
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--blue-2);
+      border-bottom: 1px solid var(--line-dim);
+    }
+
+    .modal-spec-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line-faint);
+      color: var(--line);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .modal-spec-table td:first-child {
+      font-family: var(--mono);
+      color: var(--line-dim);
+      font-size: 12px;
+      width: 28%;
+      white-space: nowrap;
+    }
+
+    .modal-spec-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .modal-spec-table tr:hover td {
+      background: rgba(220, 233, 242, 0.03);
+    }
+
+    .modal-points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 8px 0 16px;
+    }
+
+    .modal-points-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--line);
+    }
+
+    .modal-points-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--amber);
+      font-weight: bold;
+    }
+
+    .modal-points-list li strong {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .proj-modal-overlay {
+        padding: 12px;
+      }
+      .proj-modal-header {
+        padding: 12px 16px;
+      }
+      .proj-modal-body {
+        padding: 18px 16px;
+      }
+      .modal-meta-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+      .modal-spec-table td:first-child {
+        width: 38%;
+        white-space: normal;
+      }
+    }
+
+    /* ============ DESIGN GALLERY ============ */
+    #design {
+      background: var(--blue-0)
+    }
+
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+      background: var(--line-faint)
+    }
+
+    .gal-card {
+      background: var(--blue-0);
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      text-decoration: none;
+      display: block
+    }
+
+    .gal-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+      filter: saturate(.9) brightness(.92)
+    }
+
+    .gal-card:hover img {
+      transform: scale(1.06)
+    }
+
+    .gal-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px;
+      background: linear-gradient(0deg, rgba(11, 37, 64, .92), transparent);
+    }
+
+    .gal-cap b {
+      display: block;
+      font-family: var(--display);
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--line);
+      font-weight: 700
+    }
+
+    .gal-cap span {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--amber);
+      letter-spacing: .04em
+    }
+
+    .gal-card.ph .ph-inner {
+      background: repeating-linear-gradient(45deg, rgba(220, 233, 242, .04) 0 1px, transparent 1px 14px)
+    }
+
+    .gal-card.ph .ph-inner svg {
+      opacity: .4
+    }
+
+    .gal-card.ph .ph-inner span {
+      color: var(--line-dim)
+    }
+
+    .gal-card.ph .ph-inner code {
+      color: var(--line)
+    }
+
+    .gal-more {
+      margin-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .gal-note {
+      font-size: 13.5px;
+      color: var(--line-dim);
+      max-width: 480px
+    }
+
+    /* ============ EXPERIENCE TIMELINE ============ */
+    .tl {
+      margin-top: 60px;
+      border-left: 1px solid var(--line-faint);
+      padding-left: 0
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 120px 24px 1fr;
+      gap: 0;
+      position: relative
+    }
+
+    .tl-date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--amber);
+      padding: 26px 16px 26px 0;
+      text-align: right
+    }
+
+    .tl-dot-col {
+      position: relative;
+      display: flex;
+      justify-content: center
+    }
+
+    .tl-dot-col::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line-faint);
+      transform: translateX(-50%)
+    }
+
+    .tl-dot {
+      width: 9px;
+      height: 9px;
+      border: 1px solid var(--amber);
+      background: var(--blue-1);
+      margin-top: 30px;
+      transform: rotate(45deg)
+    }
+
+    .tl-body {
+      padding: 22px 0 22px 26px;
+      border-bottom: 1px solid var(--line-faint)
+    }
+
+    .tl-item:last-child .tl-body {
+      border-bottom: none
+    }
+
+    .tl-body h4 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--line);
+      margin-bottom: 4px
+    }
+
+    .tl-body .tl-loc {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--line-dim);
+      margin-bottom: 10px
+    }
+
+    .tl-body p {
+      font-size: 14.5px;
+      color: var(--line-dim);
+      max-width: 640px;
+      line-height: 1.75
+    }
+
+    /* ============ SKILLS (BOM) ============ */
+    #skills {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    #skills h2.title {
+      color: var(--blue-0);
+    }
+
+    .bom {
+      margin-top: 50px;
+      border-top: 1px solid var(--ink)
+    }
+
+    .bom-head,
+    .bom-row {
+      display: grid;
+      grid-template-columns: 64px 200px 1fr 140px;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .bom-head {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .08em;
+      color: var(--ink-dim);
+      border-bottom: 1px solid var(--ink)
+    }
+
+    .bom-row {
+      font-size: 14px;
+      align-items: center
+    }
+
+    .bom-row .item-no {
+      font-family: var(--mono);
+      color: var(--amber-dim);
+      font-size: 13px
+    }
+
+    .bom-row .item-cat {
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .bom-row .item-desc {
+      color: var(--ink-dim)
+    }
+
+    .bom-row .item-type {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-dim);
+      text-align: right
+    }
+
+    .honors {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--rule)
+    }
+
+    .honor-card {
+      background: var(--paper);
+      padding: 24px 28px
+    }
+
+    .honor-card b {
+      display: block;
+      font-family: var(--display);
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 4px
+    }
+
+    .honor-card span {
+      font-size: 13px;
+      color: var(--ink-dim)
+    }
+
+    /* ============ CONTACT ============ */
+    #contact {
+      background: var(--blue-0)
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 70px;
+      margin-top: 56px;
+      align-items: start
+    }
+
+    .contact-list {
+      list-style: none
+    }
+
+    .contact-list li {
+      border-bottom: 1px solid var(--line-faint);
+      padding: 18px 0
+    }
+
+    .contact-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: var(--line);
+      font-family: var(--display);
+      font-size: 24px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .contact-list a:hover {
+      color: var(--amber)
+    }
+
+    .contact-list small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--line-dim);
+      margin-top: 4px;
+      font-weight: 400
+    }
+
+    .contact-tb {
+      border: 1px solid var(--line-dim);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--line-dim);
+    }
+
+    .contact-tb .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--line-faint)
+    }
+
+    .contact-tb .row:last-child {
+      border-bottom: none
+    }
+
+    .contact-tb .row b {
+      color: var(--line);
+      font-weight: 600
+    }
+
+    footer {
+      padding: 30px 40px;
+      border-top: 1px solid var(--line-faint);
+      text-align: center
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--line-dim)
+    }
+
+    .reveal-once {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise .7s ease forwards
+    }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @media(max-width:980px) {
+
+      .nav-links,
+      .nav-cta {
+        display: none
+      }
+
+      .nav-toggle {
+        display: flex
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-draw {
+        order: -1;
+        max-width: 420px;
+        margin: 0 auto 20px
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr
+      }
+
+      .gal-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .role-list li {
+        grid-template-columns: 1fr;
+        gap: 2px
+      }
+
+      .role-list .role-date {
+        text-align: left
+      }
+
+      .tl-item {
+        grid-template-columns: 90px 20px 1fr
+      }
+
+      .bom-head,
+      .bom-row {
+        grid-template-columns: 40px 1fr;
+        row-gap: 4px
+      }
+
+      .bom-head div:nth-child(3),
+      .bom-head div:nth-child(4),
+      .bom-row .item-desc,
+      .bom-row .item-type {
+        grid-column: 2
+      }
+
+      .honors {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .draw-anim {
+        animation: none;
+        stroke-dashoffset: 0
+      }
+
+      .reveal-once {
+        animation: none;
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="nav">
+    <a href="#hero" class="nav-mark">
+      <svg viewBox="0 0 32 32" fill="none">
+        <rect x="1" y="1" width="30" height="30" stroke="currentColor" stroke-width="1.2" style="color:var(--line)" />
+        <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="1.2" style="color:var(--amber)" />
+        <line x1="16" y1="1" x2="16" y2="10" stroke="currentColor" stroke-width="1" style="color:var(--line-dim)" />
+        <line x1="16" y1="22" x2="16" y2="31" stroke="currentColor" stroke-width="1" style="color:var(--line-dim)" />
+      </svg>
+      <span class="nav-mark-text">A. MUKHOPADHYAY <b>/ ME&nbsp;'27</b></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#design">Design</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="Aritra_Mukhopadhyay_Resume.pdf" class="nav-cta" download>Résumé ⬇</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#design">Design</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ======================= HERO ======================= -->
+  <section id="hero">
+    <div class="grid-bg"></div>
+    <div class="hero-grid">
+      <div>
+        <div class="title-block">
+          <div>TITLE<b>PORTFOLIO — AM</b></div>
+          <div>DISCIPLINE<b>MECHANICAL ENGG.</b></div>
+          <div>SCALE<b>1 : 1</b></div>
+          <div>SHEET<b>00 / 06</b></div>
+        </div>
+        <h1>Aritra<br>Mukho&shy;padhyay</h1>
+        <p class="hero-sub">
+          Final-year <strong>Mechanical Engineering</strong> student at KGEC who moves between
+          CAD files and design files — <strong>drafting go-karts</strong> one week and
+          <strong>posters</strong> the next. Convenor, Students' Automobile Club of KGEC.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">SolidWorks</span>
+          <span class="hero-tag">Ansys FEA</span>
+          <span class="hero-tag">Python</span>
+          <span class="hero-tag">AutoCAD</span>
+          <span class="hero-tag">Illustrator</span>
+          <span class="hero-tag">Photography</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-fill">View the work</a>
+          <a href="#contact" class="btn btn-line">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-draw">
+        <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- kart chassis wireframe -->
+          <path class="blueline draw-anim"
+            d="M70 260 L120 260 L150 200 L360 200 L400 150 L460 150 L470 175 L460 260 L500 260" />
+          <path class="blueline draw-anim d2" d="M150 200 L170 260 M240 200 L250 260 M300 150 L300 200" />
+          <path class="blueline draw-anim d2" d="M300 150 L400 150" />
+          <!-- seat -->
+          <path class="blueline draw-anim d2" d="M230 150 L300 150 L300 200 L220 200 Z" />
+          <!-- roll hoop -->
+          <path class="blueline draw-anim d3" d="M330 150 C330 105, 400 105, 400 150" />
+          <!-- steering column -->
+          <path class="blueline draw-anim d3" d="M170 200 L150 160 L165 150" />
+          <!-- wheels -->
+          <circle class="blueline draw-anim" cx="120" cy="270" r="34" />
+          <circle class="blueline-amber draw-anim" cx="120" cy="270" r="6" />
+          <circle class="blueline draw-anim" cx="460" cy="270" r="34" />
+          <circle class="blueline-amber draw-anim" cx="460" cy="270" r="6" />
+          <!-- dimension line -->
+          <line class="blueline-dim" x1="86" y1="330" x2="494" y2="330" />
+          <line class="blueline-dim" x1="86" y1="322" x2="86" y2="338" />
+          <line class="blueline-dim" x1="494" y1="322" x2="494" y2="338" />
+          <text x="270" y="352" text-anchor="middle" class="dwg-label">1780 mm — WHEELBASE</text>
+          <!-- leader callouts -->
+          <line class="blueline-dim" x1="400" y1="150" x2="440" y2="90" />
+          <text x="444" y="86" class="dwg-label amber">CV-CATEGORY CHASSIS</text>
+          <line class="blueline-dim" x1="230" y1="175" x2="140" y2="120" />
+          <text x="30" y="116" class="dwg-label">TAARZAN — SAC-KGEC</text>
+          <text x="70" y="40" class="dwg-label">FIG. 01 — SIDE ELEVATION</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= ABOUT ======================= -->
+  <section id="about" class="on-paper">
+    <div class="wrap">
+      <div class="sheet-tag"><span class="no">01</span><span>ABOUT</span></div>
+      <h2 class="title">Two disciplines,<br>one drafting table</h2>
+      <p class="lede">Engineering gives the structure. Design gives the language to explain it. I use both — sometimes
+        on the same project.</p>
+
+      <div class="about-grid">
+        <div class="frame portrait">
+          <img src="portrait.png" alt="Aritra Mukhopadhyay" loading="lazy">
+        </div>
+
+        <div class="about-content">
+          <div class="about-bio">
+            <p><strong>I'm a final-year Mechanical Engineering student at Kalyani Government Engineering
+                College</strong> (Batch 2027), based in Kolkata, West Bengal. My work sits between two rooms — the CAD
+              lab, where I model gears, pistons and chassis, and the design desk, where I lay out posters, banners and
+              thumbnails.</p>
+            <p>As <strong>Convenor of the Students' Automobile Club of KGEC</strong>, I helped a 23-member team design,
+              fabricate and race a CV-category go-kart at the Indian Karting Race in Coimbatore. I've also trained on
+              the factory floor — CNC machining and missile assembly at Ordnance Factory Dum Dum, and steel processing
+              at SAIL's Alloy Steels Plant, Durgapur.</p>
+            <p>Outside the workshop, I run the camera for <strong>Shutterbug-KGEC</strong> and lead layout for
+              <strong>Imposter-KGEC</strong>, the college's design club — where the same eye for tolerances and
+              alignment carries over from drafting to design.</p>
+          </div>
+
+          <ul class="role-list">
+            <li><span class="role-org">SAC-KGEC</span><span class="role-title">Convenor (prev. Associate,
+                Member)</span><span class="role-date">May 2024 — Present</span></li>
+            <li><span class="role-org">IIW-India, KGEC Chapter</span><span class="role-title">Secretary</span><span
+                class="role-date">Jun 2026 — Present</span></li>
+            <li><span class="role-org">Shutterbug-KGEC</span><span class="role-title">Convenor, Photography
+                Club</span><span class="role-date">Current</span></li>
+            <li><span class="role-org">Imposter-KGEC</span><span class="role-title">Convenor, Design Club</span><span
+                class="role-date">Current</span></li>
+            <li><span class="role-org">ASME</span><span class="role-title">Member</span><span class="role-date">Jan 2025
+                — Present</span></li>
+            <li><span class="role-org">T&amp;P Cell, KGEC</span><span class="role-title">Placement
+                Coordinator</span><span class="role-date">Jul 2025 — Present</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PROJECTS ======================= -->
+  <section id="projects">
+    <div class="grid-bg"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <div class="sheet-tag"><span class="no">02</span><span>ENGINEERING PROJECTS</span></div>
+      <h2 class="title">Built, simulated,<br>and raced</h2>
+      <p class="lede">Four projects, from a national-level go-kart to a research paper on orthopaedic drilling. Each
+        drawing sheet below has a slot for your renders or site photos.</p>
+    </div>
+
+    <div class="proj-grid" style="margin-top:56px;max-width:1180px;margin-left:auto;margin-right:auto">
+      <div class="proj-card" data-project="taarzan">
+        <div class="proj-head"><span class="proj-num">SHEET 02.1</span><span class="proj-date">Oct — Nov 2025</span>
+        </div>
+        <h3 class="proj-trigger" tabindex="0" role="button" aria-label="Open TAARZAN Go-Kart Dossier">TAARZAN Go-Kart <span class="proj-link-arrow">↗</span></h3>
+        <div class="proj-org">Students' Automobile Club of KGEC</div>
+        <div class="proj-frame proj-trigger" tabindex="0" role="button" aria-label="Open TAARZAN Go-Kart Dossier">
+          <img src="taarzan-01.jpeg" alt="TAARZAN Go-Kart — Students' Automobile Club of KGEC" loading="lazy">
+        </div>
+        <ul>
+          <li>Part of a 23-member team that designed, fabricated and raced a CV-category go-kart at the Indian Karting
+            Race, Coimbatore.</li>
+          <li>Cleared technical inspection among 39 competing teams.</li>
+          <li>Secured a ₹5,000 cash prize for the team.</li>
+        </ul>
+        <button type="button" class="proj-open-btn proj-trigger" aria-label="Open TAARZAN Go-Kart Dossier">Open Engineering Dossier [↗]</button>
+      </div>
+
+      <div class="proj-card" data-project="cad-engine">
+        <div class="proj-head"><span class="proj-num">SHEET 02.2</span><span class="proj-date">Aug 2026</span></div>
+        <h3 class="proj-trigger" tabindex="0" role="button" aria-label="Open Automated CAD Engine Dossier">Automated CAD Engine <span class="proj-link-arrow">↗</span></h3>
+        <div class="proj-org">Python-Powered Parametric Spur Gear Generator</div>
+        <div class="proj-frame proj-trigger" tabindex="0" role="button" aria-label="Open Automated CAD Engine Dossier">
+          <img src="cad-engine-01.jpg" alt="Automated CAD Spur Gear Engine — 2D Production Drawing Sheet" loading="lazy">
+        </div>
+        <ul>
+          <li>Built a desktop app integrating Python with the SolidWorks API.</li>
+          <li>Auto-generates 3D models and 2D drafts of spur gears from user-input parameters.</li>
+          <li>Cut design-to-documentation time from minutes to under 5 seconds per iteration.</li>
+        </ul>
+        <button type="button" class="proj-open-btn proj-trigger" aria-label="Open Automated CAD Engine Dossier">Open Engineering Dossier [↗]</button>
+      </div>
+
+      <div class="proj-card" data-project="fea">
+        <div class="proj-head"><span class="proj-num">SHEET 02.3</span><span class="proj-date">Sept 2026</span></div>
+        <h3 class="proj-trigger" tabindex="0" role="button" aria-label="Open Piston &amp; Rod FEA Dossier">Piston &amp; Rod FEA <span class="proj-link-arrow">↗</span></h3>
+        <div class="proj-org">Finite Element Analysis in ANSYS</div>
+        <div class="proj-frame proj-trigger" tabindex="0" role="button" aria-label="Open Piston &amp; Rod FEA Dossier">
+          <img src="fea-piston-01.jpg" alt="Piston &amp; Connecting Rod FEA — ANSYS Mechanical Static Structural" loading="lazy">
+        </div>
+        <ul>
+          <li>Performed Static Structural and Steady-State Thermal FEA on a piston-connecting rod assembly.</li>
+          <li>Used path linearization along the rod shank and piston cross-section.</li>
+          <li>Extracted quantitative deformation and thermal gradients.</li>
+        </ul>
+        <button type="button" class="proj-open-btn proj-trigger" aria-label="Open Piston &amp; Rod FEA Dossier">Open Engineering Dossier [↗]</button>
+      </div>
+
+      <div class="proj-card" data-project="drilling">
+        <div class="proj-head"><span class="proj-num">SHEET 02.4</span><span class="proj-date">Aug 2025 — Present</span>
+        </div>
+        <h3 class="proj-trigger" tabindex="0" role="button" aria-label="Open Orthopaedic Drilling Dossier">Orthopaedic Drilling <span class="proj-link-arrow">↗</span></h3>
+        <div class="proj-org">Research Project — Best Paper, FOSET 2026</div>
+        <div class="proj-frame proj-trigger" tabindex="0" role="button" aria-label="Open Orthopaedic Drilling Dossier">
+          <div class="ph-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--line-dim)" stroke-width="1.3">
+              <rect x="2" y="6" width="20" height="14" rx="1" />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+            <span>Rig / setup photo<br><code>drilling-rig-01.jpg</code></span>
+          </div>
+        </div>
+        <ul>
+          <li>Designed a low-cost, Arduino-controlled mini-CNC drilling setup for bone specimens.</li>
+          <li>Ran Taguchi L9 experiments with thermocouples and a load-cell dynamometer.</li>
+          <li>Built Minitab RSM models to jointly minimize temperature rise and thrust force.</li>
+        </ul>
+        <button type="button" class="proj-open-btn proj-trigger" aria-label="Open Orthopaedic Drilling Dossier">Open Engineering Dossier [↗]</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= DESIGN / BEHANCE ======================= -->
+  <section id="design">
+    <div class="wrap">
+      <div class="sheet-tag"><span class="no">03</span><span>DESIGN &amp; VISUAL WORK</span></div>
+      <h2 class="title">Off the Behance<br>shelf</h2>
+      <p class="lede">Posters, apparel and channel graphics — pulled straight from my Behance profile, plus room for the
+        photography I shoot for Shutterbug-KGEC.</p>
+
+      <div class="gal-grid">
+        <a class="gal-card" href="https://www.behance.net/gallery/255271525/POSTERS" target="_blank" rel="noopener">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/834d67255271525.Y3JvcCw4MDgsNjMyLDAsMA.png"
+            alt="Poster series on Behance">
+          <div class="gal-cap"><b>Posters</b><span>Behance ↗</span></div>
+        </a>
+        <a class="gal-card" href="https://www.behance.net/gallery/255270293/T-Shirt-Designs" target="_blank"
+          rel="noopener">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/17447a255270293.Y3JvcCw4MDgsNjMyLDAsMA.png"
+            alt="T-shirt designs on Behance">
+          <div class="gal-cap"><b>T-Shirt Designs</b><span>Behance ↗</span></div>
+        </a>
+        <a class="gal-card" href="https://www.behance.net/gallery/223925153/YOUTUBE-THUMBNAILS" target="_blank"
+          rel="noopener">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/a160ee223925153.Y3JvcCw4MDgsNjMyLDAsMA.png"
+            alt="YouTube thumbnails on Behance">
+          <div class="gal-cap"><b>YT Thumbnails</b><span>Behance ↗</span></div>
+        </a>
+        <a class="gal-card" href="https://www.behance.net/gallery/223926133/BANNER" target="_blank" rel="noopener">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/d2cb6b223926133.Y3JvcCw4MDgsNjMyLDAsMA.png"
+            alt="Banner design on Behance">
+          <div class="gal-cap"><b>Banner</b><span>Behance ↗</span></div>
+        </a>
+
+        <div class="gal-card ph">
+          <div class="ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--line-dim)" stroke-width="1.3">
+              <rect x="2" y="6" width="20" height="14" rx="1" />
+              <circle cx="12" cy="13" r="4" />
+            </svg><span>Event / campus photo<br><code>photo-01.jpg</code></span></div>
+        </div>
+        <div class="gal-card ph">
+          <div class="ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--line-dim)" stroke-width="1.3">
+              <rect x="2" y="6" width="20" height="14" rx="1" />
+              <circle cx="12" cy="13" r="4" />
+            </svg><span>Shutterbug-KGEC shoot<br><code>photo-02.jpg</code></span></div>
+        </div>
+        <div class="gal-card ph">
+          <div class="ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--line-dim)" stroke-width="1.3">
+              <rect x="2" y="6" width="20" height="14" rx="1" />
+              <circle cx="12" cy="13" r="4" />
+            </svg><span>ESPEKTRO promo art<br><code>photo-03.jpg</code></span></div>
+        </div>
+        <div class="gal-card ph">
+          <div class="ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--line-dim)" stroke-width="1.3">
+              <rect x="2" y="6" width="20" height="14" rx="1" />
+              <circle cx="12" cy="13" r="4" />
+            </svg><span>Client work — Avalanche<br><code>photo-04.jpg</code></span></div>
+        </div>
+      </div>
+
+      <div class="gal-more">
+        <p class="gal-note">Graphic Designer for ESPEKTRO (KGEC's Annual Techno-Management Fiesta) and client work
+          including Avalanche. Tools: Illustrator, Photoshop, Lightroom, Figma.</p>
+        <a href="https://www.behance.net/aritramukhopa1" target="_blank" rel="noopener" class="btn btn-line">Full
+          Behance profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= EXPERIENCE ======================= -->
+  <section id="experience">
+    <div class="grid-bg"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <div class="sheet-tag"><span class="no">04</span><span>INDUSTRIAL TRAINING &amp; TIMELINE</span></div>
+      <h2 class="title">On the shop floor</h2>
+      <p class="lede">Vocational training with the Ministry of Defence and the Steel Authority of India, alongside a
+        national karting competition.</p>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-date">Jul 2025</div>
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-body">
+            <h4>Ordnance Factory Dum Dum (OFDC)</h4>
+            <div class="tl-loc">Ministry of Defence, Govt. of India — North Dum Dum · 3 weeks</div>
+            <p>CNC turning, milling, jig boring and laser cutting; exposure to missile and bomb-fuse assembly, polymer
+              component manufacturing and Siemens NX product design. Mini-project on end-to-end manufacturing of
+              LRCR/MRCR components — Nozzle Block and Aluminium Body.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Oct 2025</div>
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-body">
+            <h4>Indian Karting Race (IKR)</h4>
+            <div class="tl-loc">CoASTT High Performance Centre — Coimbatore, Tamil Nadu · 2 months</div>
+            <p>Competed with Team SAC-KGEC in the CV category, organised by ISIE and Jansons Institute of Technology.
+              Passed rigorous technical inspection among 39 teams.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Aug 2026</div>
+          <div class="tl-dot-col">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="tl-body">
+            <h4>Alloy Steels Plant, SAIL</h4>
+            <div class="tl-loc">Steel Authority of India Limited — Durgapur · 2 weeks</div>
+            <p>Industrial exposure to steel melting, secondary refining, continuous casting, rolling, forging and heat
+              treatment. Studied the vacuum steam ejector system for liquid-metal degassing and the hydraulic furnace
+              movement &amp; tilting control system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= SKILLS (BOM) ======================= -->
+  <section id="skills" class="on-paper">
+    <div class="wrap">
+      <div class="sheet-tag"><span class="no">05</span><span>SKILLS — BILL OF MATERIALS</span></div>
+      <h2 class="title">Parts list</h2>
+      <p class="lede">Everything that goes into a build, listed the way a drawing set would list its components.</p>
+
+      <div class="bom">
+        <div class="bom-head">
+          <div>NO.</div>
+          <div>CATEGORY</div>
+          <div>ITEMS</div>
+          <div>TYPE</div>
+        </div>
+
+        <div class="bom-row">
+          <div class="item-no">01</div>
+          <div class="item-cat">CAD &amp; Simulation</div>
+          <div class="item-desc">SolidWorks · AutoCAD 2D/3D · Ansys Mechanical (Static &amp; Thermal FEA) · Siemens NX
+          </div>
+          <div class="item-type">ENGINEERING</div>
+        </div>
+        <div class="bom-row">
+          <div class="item-no">02</div>
+          <div class="item-cat">Programming &amp; Automation</div>
+          <div class="item-desc">Python · GUI development · Parametric modelling · Arduino · G-Code · iCNC Simulator
+          </div>
+          <div class="item-type">SOFTWARE</div>
+        </div>
+        <div class="bom-row">
+          <div class="item-no">03</div>
+          <div class="item-cat">Manufacturing</div>
+          <div class="item-desc">CNC turning &amp; milling · Mini-CNC automation · Heat treatment · Materials testing
+            (hardness, impact, tensile)</div>
+          <div class="item-type">SHOP FLOOR</div>
+        </div>
+        <div class="bom-row">
+          <div class="item-no">04</div>
+          <div class="item-cat">Design</div>
+          <div class="item-desc">Adobe Illustrator · Photoshop · Lightroom · Figma · Canva</div>
+          <div class="item-type">VISUAL</div>
+        </div>
+      </div>
+
+      <div class="honors">
+        <div class="honor-card"><b>Best Paper Presentation</b><span>Forum of Scientists, Engineers &amp; Technologists
+            (FOSET), 16th Academic Meet, 2026</span></div>
+        <div class="honor-card"><b>Best Presenter Award</b><span>Workshop on Data-Driven Quality Control in Smart
+            Manufacturing, IIT (ISM) Dhanbad, 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CONTACT ======================= -->
+  <section id="contact">
+    <div class="grid-bg"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <div class="sheet-tag"><span class="no">06</span><span>CONTACT</span></div>
+      <h2 class="title">Let's build<br>something</h2>
+
+      <div class="contact-grid">
+        <ul class="contact-list">
+          <li><a href="mailto:mukhoari@gmail.com">Email<small>mukhoari@gmail.com</small></a></li>
+          <li><a href="tel:+918100060437">Phone<small>+91 81000 60437</small></a></li>
+          <li><a href="https://www.linkedin.com/in/aritramukhopadhyay-3a7218291" target="_blank"
+              rel="noopener">LinkedIn<small>/in/aritramukhopadhyay-3a7218291</small></a></li>
+          <li><a href="https://www.behance.net/aritramukhopa1" target="_blank"
+              rel="noopener">Behance<small>/aritramukhopa1</small></a></li>
+          <li><a href="https://instagram.com/aritra7__" target="_blank"
+              rel="noopener">Instagram<small>@aritra7__</small></a></li>
+          <li><a href="https://twitter.com/AriMukho" target="_blank" rel="noopener">Twitter /
+              X<small>@AriMukho</small></a></li>
+        </ul>
+
+        <div class="contact-tb">
+          <div class="row"><span>NAME</span><b>Aritra Mukhopadhyay</b></div>
+          <div class="row"><span>DISCIPLINE</span><b>B.Tech Mechanical Engg.</b></div>
+          <div class="row"><span>INSTITUTION</span><b>KGEC — Batch 2027</b></div>
+          <div class="row"><span>BASED IN</span><b>Kolkata, West Bengal</b></div>
+          <div class="row"><span>AVAILABLE FOR</span><b>Freelance design &amp; internships</b></div>
+          <div class="row"><span>SHEET</span><b>06 / 06</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PROJECT DOSSIER MODAL ======================= -->
+  <div id="projectModal" class="proj-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
+    <div class="proj-modal-container" id="projectModalContainer">
+      <div class="proj-modal-header">
+        <div class="proj-modal-titleblock">
+          <div class="proj-modal-ref">
+            <span id="modalDwgRef">DWG REF: PRJ-02.1 // SAC-KGEC</span>
+            <span class="status-tag" id="modalStatus">STATUS: VERIFIED</span>
+          </div>
+          <h2 class="proj-modal-title" id="modalTitle">Project Title</h2>
+          <div class="proj-modal-subtitle" id="modalSubtitle">Sub-heading</div>
+        </div>
+        <button type="button" class="proj-modal-close" id="modalCloseBtn" aria-label="Close Project Dossier">
+          <span>CLOSE</span> [ESC ✕]
+        </button>
+      </div>
+
+      <div class="modal-meta-strip" id="modalMetaStrip"></div>
+
+      <div class="proj-modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Drafted by Aritra Mukhopadhyay — Kolkata, India. Updated 2026.</p>
+  </footer>
+
+  <script>
+    (function () {
+      // Navbar scroll effect
+      var nav = document.getElementById('nav');
+      if (nav) {
+        window.addEventListener('scroll', function () {
+          nav.classList.toggle('scrolled', window.scrollY > 10);
+        });
+      }
+
+      // Mobile navigation toggle
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileMenu');
+      var close = document.getElementById('mobileClose');
+      if (toggle && menu && close) {
+        toggle.addEventListener('click', function () { menu.classList.add('open'); });
+        close.addEventListener('click', function () { menu.classList.remove('open'); });
+        menu.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', function () { menu.classList.remove('open'); });
+        });
+      }
+
+      // ======================= PROJECT DOSSIER DATA & MODAL =======================
+      function renderMediaSlot(slot) {
+        if (!slot) return '';
+        if (slot.type === 'image' && slot.src) {
+          return '<div class="modal-media-slot">' +
+            '<span class="slot-badge">' + (slot.tag || 'FIG / PHOTO') + '</span>' +
+            '<img src="' + slot.src + '" alt="' + (slot.alt || '') + '" loading="lazy">' +
+            '<div class="slot-caption"><span>' + slot.caption + '</span><span class="slot-type-tag">' + (slot.typeTag || 'PHOTO') + '</span></div>' +
+            '</div>';
+        }
+        if (slot.type === 'video' && slot.src) {
+          return '<div class="modal-media-slot">' +
+            '<span class="slot-badge">' + (slot.tag || 'FIG / VIDEO') + '</span>' +
+            '<video controls src="' + slot.src + '" preload="metadata"></video>' +
+            '<div class="slot-caption"><span>' + slot.caption + '</span><span class="slot-type-tag">' + (slot.typeTag || 'VIDEO') + '</span></div>' +
+            '</div>';
+        }
+        // Blueprint Placeholder Slot (ready for either photo or video)
+        var isVideo = slot.isVideo || (slot.typeTag && slot.typeTag.includes('VIDEO'));
+        var iconSvg = isVideo ?
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="5 3 19 12 5 21 5 3"/></svg>' :
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="6" width="20" height="14" rx="1"/><circle cx="12" cy="13" r="4"/></svg>';
+
+        return '<div class="modal-media-slot is-slot-placeholder" title="Media Slot: ' + (slot.code || '') + '">' +
+          '<span class="slot-badge">' + (slot.tag || 'FIG / MEDIA') + '</span>' +
+          iconSvg +
+          '<div class="slot-ph-title">' + (slot.title || 'Photo / Video Slot') + '</div>' +
+          '<div class="slot-ph-sub">' + (slot.subtitle || 'Slot ready for technical render, site photo or demonstration video') + '</div>' +
+          (slot.code ? '<code>' + slot.code + '</code>' : '') +
+          '<div class="slot-caption" style="width:100%;margin-top:6px;"><span>' + (slot.caption || 'Media Slot') + '</span><span class="slot-type-tag">' + (slot.typeTag || (isVideo ? 'VIDEO' : 'PHOTO')) + '</span></div>' +
+          '</div>';
+      }
+
+      var PROJECTS = {
+        'taarzan': {
+          dwgRef: 'DWG REF: PRJ-02.1 // SAC-KGEC',
+          status: 'IKR 2025 VALIDATED // ₹5,000 CASH PRIZE',
+          title: 'TAARZAN CV-Category Go-Kart',
+          subtitle: 'National-Level Racing Go-Kart Designed, Fabricated & Raced from Scratch',
+          meta: [
+            { label: 'ROLE', val: 'Associate Manager & 2nd Driver' },
+            { label: 'ORGANIZATION', val: "Students' Automobile Club of KGEC (SAC-KGEC)" },
+            { label: 'COMPETITION', val: 'IKR 2025, CoASTT High Performance Centre, Coimbatore' },
+            { label: 'POWERTRAIN', val: 'Suzuki Gixxer 150cc 4-Stroke Petrol Engine' },
+            { label: 'STEERING', val: 'Ackerman Steering Geometry' },
+            { label: 'CONTROLS INNOVATION', val: 'Steering-Mounted Hand Clutch System' }
+          ],
+          slotTopRight: {
+            type: 'image',
+            src: 'taarzan-01.jpeg',
+            alt: 'TAARZAN Go-Kart at CoASTT High Performance Centre, Coimbatore',
+            tag: 'FIG. 01 / TRACK PHOTO',
+            caption: 'TAARZAN Go-Kart on paddock apron at CoASTT High Performance Centre',
+            typeTag: 'PHOTO'
+          },
+          slotBottom1: {
+            type: 'placeholder',
+            isVideo: false,
+            tag: 'FIG. 02 / PHOTO',
+            title: 'Tubular Chassis Jig Welding & Assembly',
+            subtitle: 'Shop-floor fabrication: TIG/MIG welding, Ackerman steering linkages, and roll cage inspection',
+            code: 'taarzan-chassis-build.jpg',
+            caption: 'Chassis Fabrication & Workshop Scrutiny',
+            typeTag: 'PHOTO / BUILD'
+          },
+          slotBottom2: {
+            type: 'placeholder',
+            isVideo: true,
+            tag: 'FIG. 03 / VIDEO',
+            title: 'Dynamic Track Trial & Technical Inspection Run',
+            subtitle: 'Video footage: 45° tilt-table test, brake lockup scrutiny, and live circuit run at CoASTT',
+            code: 'taarzan-track-run.mp4',
+            caption: 'IKR 2025 Dynamic Trial & Lap Demonstration',
+            typeTag: 'VIDEO (.MP4)'
+          },
+          overviewHtml: `
+            <p class="modal-p">
+              Built completely from scratch by a <strong>23-member engineering team</strong> from the Students' Automobile Club of KGEC (SAC-KGEC), the <strong>TAARZAN CV-Category Go-Kart</strong> was engineered to compete at the prestigious <strong>National Level Indian Karting Race (IKR 2025)</strong>, organized by the Imperial Society of Innovative Engineers (ISIE) and Jansons Institute of Technology at the world-class CoASTT High Performance Centre in Coimbatore, Tamil Nadu.
+            </p>
+            <p class="modal-p">
+              Facing <strong>38 rival collegiate racing teams</strong> from across India (39 competing teams total), our team successfully cleared every stage of the rigorous, stringent <strong>Technical Inspection (TI)</strong>, safety scrutiny, tilt-table (45°), and dynamic braking tests on the very first attempt—earning official competition clearance and a <strong>₹5,000 national cash award</strong>.
+            </p>
+          `,
+          bodyHtml: `
+            <div class="modal-metrics-grid">
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">150 cc</div>
+                <div class="modal-metric-label">SUZUKI GIXXER 4-STROKE PETROL ENGINE</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">39 TEAMS</div>
+                <div class="modal-metric-label">COMPETING TEAMS NATIONWIDE</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">₹5,000</div>
+                <div class="modal-metric-label">TECHNICAL INSPECTION CASH PRIZE</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">2nd DRIVER</div>
+                <div class="modal-metric-label">ASSOCIATE MANAGER &amp; TRACK DRIVER</div>
+              </div>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">02 / Powertrain &amp; Control Innovation: Hand-Clutch System</div>
+              <p class="modal-p">
+                A core mechanical innovation engineered for the TAARZAN kart was the elimination of the traditional foot-operated third pedal in favor of an ergonomic <strong>steering-mounted progressive hand clutch mechanism</strong>:
+              </p>
+              <ul class="modal-points-list">
+                <li><strong>Dual-Pedal Dedicated Foot Well:</strong> By relocating clutch actuation to a progressive handlebar/steering lever, the driver's feet are dedicated exclusively to two pedals—<strong>left-foot for hydraulic disc braking</strong> and <strong>right-foot for throttle</strong>. This eliminated pedal confusion, heel-and-toe clumsiness, and driver fatigue in the compact cockpit during high-G deceleration.</li>
+                <li><strong>Engine Specification:</strong> Powered by a tuned <strong>Suzuki Gixxer 150cc 4-stroke single-cylinder air-cooled petrol engine</strong> with custom intake routing, free-flow exhaust header, and optimized chain-and-sprocket drive reduction tailored for CoASTT's technical infield hairpin curves.</li>
+                <li><strong>Rapid Apex Transitions:</strong> The hand clutch delivered immediate tactile bite-point engagement, enabling rapid sequential downshifting and instant corner-exit throttle application without throttle-brake overlap delay.</li>
+              </ul>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">03 / Chassis Architecture, Ackerman Dynamics &amp; FEA Simulation</div>
+              <table class="modal-spec-table">
+                <thead>
+                  <tr>
+                    <th>SUBSYSTEM</th>
+                    <th>ENGINEERING SPECIFICATION &amp; METHODOLOGY</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Chassis Frame</td>
+                    <td>Custom tubular space-frame chassis fabricated with structural steel tubing; modeled and geometrically optimized in <strong>SolidWorks</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>FEA Crashworthiness</td>
+                    <td>Conducted Frontal Impact, Rear Impact, Side Impact, and Torsional Rigidity simulations in <strong>ANSYS Mechanical</strong> to verify Factor of Safety (FOS &gt; 1.8) and ensure driver roll-cage crashworthiness under high-G loads.</td>
+                  </tr>
+                  <tr>
+                    <td>Steering Geometry</td>
+                    <td>Engineered true <strong>Ackerman Steering Geometry</strong> to provide differential wheel angles during turns, completely eliminating inside wheel tire-scrub and enhancing front-end turn-in bite.</td>
+                  </tr>
+                  <tr>
+                    <td>Braking System</td>
+                    <td>Rear-axle hydraulic ventilated disc brake assembly with dual-piston calipers, tuned for instantaneous 4-wheel lockup during official scrutiny.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">04 / Shop-Floor Fabrication &amp; Hands-on Manufacturing</div>
+              <p class="modal-p">
+                As Associate Manager and fabrication lead, I worked directly on the college workshop floor transforming raw steel tubing into a competition-ready vehicle:
+              </p>
+              <ul class="modal-points-list">
+                <li><strong>Hot Forging &amp; Metal Forming:</strong> Forged and shaped steering knuckles, pedal brackets, and structural gusset reinforcement plates.</li>
+                <li><strong>Precision Cutting &amp; Grinding:</strong> Executed tube mitering, notch grinding, and surface prep to achieve zero-gap coped joints prior to welding.</li>
+                <li><strong>Welding &amp; Jig Fixturing:</strong> Applied precision <strong>TIG and MIG welding</strong> across all critical structural nodes on a leveled steel chassis jig table, maintaining diagonal symmetry within &plusmn;1.5 mm tolerance.</li>
+                <li><strong>Machining:</strong> Lathe-turned wheel hubs, bearing carrier blocks, and sprocket mount adapters to maintain precise runout limits.</li>
+              </ul>
+            </div>
+          `
+        },
+        'cad-engine': {
+          dwgRef: 'DWG REF: PRJ-02.2 // AUTO-CAD',
+          status: 'PRODUCTION AUTOMATION // &lt; 5s CYCLE',
+          title: 'Automated CAD Spur Gear Engine',
+          subtitle: 'Python-Powered Parametric Spur Gear Generator via SolidWorks COM/API',
+          meta: [
+            { label: 'ROLE', val: 'Lead Developer & Automation Engineer' },
+            { label: 'CORE STACK', val: 'Python, SolidWorks API, Win32COM, Tkinter' },
+            { label: 'FRAMEWORK', val: 'STAR (Situation, Task, Action, Result)' },
+            { label: 'CYCLE TIME', val: '&lt; 5 Seconds per Iteration (&gt;90% faster)' },
+            { label: 'DELIVERABLES', val: '3D .SLDPRT Model + 2D Production PDF' },
+            { label: 'TIMELINE', val: 'Aug 2026' }
+          ],
+          slotTopRight: {
+            type: 'image',
+            src: 'cad-engine-solidworks-part.jpg',
+            tag: 'FIG. 01 / PYTHON GUI',
+            alt: 'Gear Automation Tool: Python desktop UI and win32com backend',
+            caption: 'Gear Automation Tool: Python desktop UI & win32com backend',
+            typeTag: 'PHOTO / UI'
+          },
+          slotBottom1: {
+            type: 'image',
+            src: 'cad-engine-ui.png',
+            tag: 'FIG. 02 / 3D CAD',
+            alt: 'Parametric 3D SolidWorks Part (gear_template.sldprt)',
+            caption: 'Parametric 3D SolidWorks Part (gear_template.sldprt)',
+            typeTag: '3D CAD MODEL'
+          },
+          slotBottom2: {
+            type: 'video',
+            src: 'cad-engine-demo.mp4',
+            tag: 'FIG. 03 / VIDEO DEMO',
+            caption: 'Live Automation Demo: GUI parameter input to 2D PDF drawing (<5s)',
+            typeTag: 'VIDEO (.MP4)'
+          },
+          overviewHtml: `
+            <p class="modal-p">
+              In mechanical design offices, repetitive 3D modeling and 2D drafting of standardized transmission components—specifically involute spur gears—consumes significant engineering hours. Across multiple project revisions, manual dimensioning, tooth layout, keyway positioning, and drawing title-block entries are highly susceptible to human error and drafting discrepancies between CAD models and shop-floor drawings.
+            </p>
+            <p class="modal-p">
+              To solve this bottleneck, I developed an end-to-end design automation tool in Python that integrates with the <strong>SolidWorks COM API</strong>, auto-generating fully parametric 3D CAD parts and standardized 2D production drawing sheets in under 5 seconds per iteration.
+            </p>
+          `,
+          bodyHtml: `
+            <div class="modal-metrics-grid">
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">&lt; 5s</div>
+                <div class="modal-metric-label">CYCLE TIME PER ITERATION (WAS 15-20 MIN)</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">0%</div>
+                <div class="modal-metric-label">DIMENSIONAL DISCREPANCIES / ERRORS</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">1-CLICK</div>
+                <div class="modal-metric-label">3D .SLDPRT + 2D PDF DRAWING EXPORT</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">100%</div>
+                <div class="modal-metric-label">PARAMETRIC INVOLUTE MATHEMATICAL RIGOR</div>
+              </div>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">02 / STAR Framework Breakdown</div>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <div class="modal-metric-card" style="border-left-color:var(--line-dim);">
+                  <div style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.06em;margin-bottom:4px;">[S] SITUATION — The Industrial Bottleneck</div>
+                  <div class="modal-p" style="margin-bottom:0;font-size:13.5px;">
+                    Manual 3D modeling and 2D drafting of standard mechanical transmission components—such as involute spur gears—is repetitive, time-consuming, and prone to human dimensioning errors across design revisions. Mechanical engineers spend hours recalculating pitch diameters, addendums, dedendums, and drafting orthographic views.
+                  </div>
+                </div>
+
+                <div class="modal-metric-card" style="border-left-color:var(--amber);">
+                  <div style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.06em;margin-bottom:4px;">[T] TASK — The Engineering Objective</div>
+                  <div class="modal-p" style="margin-bottom:0;font-size:13.5px;">
+                    Architect and build a standalone desktop software application that accepts core gear design parameters, programmatically drives SolidWorks to generate fully constrained 3D CAD parts, produces production-ready 2D drafting sheets, and exports manufacturing deliverables with zero manual drafting.
+                  </div>
+                </div>
+
+                <div class="modal-metric-card" style="border-left-color:var(--line);">
+                  <div style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.06em;margin-bottom:4px;">[A] ACTION — Technical Implementation</div>
+                  <div class="modal-p" style="margin-bottom:0;font-size:13.5px;">
+                    <ul class="modal-points-list" style="margin:0;">
+                      <li><strong>Parametric GUI:</strong> Built a clean Python desktop interface to accept user inputs: Module (m), Teeth Count (Z), Pressure Angle (&alpha;), Face Width (b), Bore Diameter, Hub Extension, and Tooth Thickness.</li>
+                      <li><strong>SolidWorks API Automation:</strong> Scripted backend COM automation in Python using <code>win32com.client</code> to drive mathematical equations directly inside SolidWorks. The script establishes true involute curve sketches, circular tooth patterns, boss extrusions, and keyway cuts.</li>
+                      <li><strong>Automated 2D Drafting Sheet:</strong> Programmatically instantiates a standardized engineering drawing template, inserts front and section views, auto-attaches dimensional annotations, and populates the drawing title-block.</li>
+                      <li><strong>One-Click Deliverables:</strong> Single button click simultaneously exports the 3D native <code>.sldprt</code> model and the production-approved vector 2D PDF drawing.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="modal-metric-card" style="border-left-color:var(--amber);">
+                  <div style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.06em;margin-bottom:4px;">[R] RESULT — Quantifiable Industrial Impact</div>
+                  <div class="modal-p" style="margin-bottom:0;font-size:13.5px;">
+                    Slashed the design-to-drawing cycle from 15–20 minutes to <strong>under 5 seconds per iteration</strong> (&gt;90% reduction). Completely eliminated drafting discrepancies between 3D model and 2D drawings. Established a reusable automation baseline ready to scale toward helical gears, splined shafts, and full transmission gearboxes.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">03 / Parametric Gear Calculations &amp; Inputs</div>
+              <table class="modal-spec-table">
+                <thead>
+                  <tr>
+                    <th>PARAMETER</th>
+                    <th>MATHEMATICAL RELATION / API VARIABLE</th>
+                    <th>PURPOSE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Module (m)</td>
+                    <td><code>m = d / Z</code></td>
+                    <td>Defines gear tooth size and scaling baseline.</td>
+                  </tr>
+                  <tr>
+                    <td>Teeth Count (Z)</td>
+                    <td>Integer input</td>
+                    <td>Determines pitch circle diameter and transmission ratio.</td>
+                  </tr>
+                  <tr>
+                    <td>Pitch Circle (d)</td>
+                    <td><code>d = m &times; Z</code></td>
+                    <td>Drives base sketch circle for involute generation.</td>
+                  </tr>
+                  <tr>
+                    <td>Addendum / Dedendum</td>
+                    <td><code>ha = 1.0m, hf = 1.25m</code></td>
+                    <td>Sets outer tip diameter and root clearance fillet.</td>
+                  </tr>
+                  <tr>
+                    <td>Involute Tooth Profile</td>
+                    <td>Parametric coordinate equations</td>
+                    <td>True involute tooth flank generation via SolidWorks Spline API.</td>
+                  </tr>
+                  <tr>
+                    <td>Bore &amp; Keyway</td>
+                    <td>Shaft fit tolerance &amp; DIN keyway</td>
+                    <td>Parametric center bore cut with standardized keyway dimensions.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          `
+        },
+        'fea': {
+          dwgRef: 'DWG REF: PRJ-02.3 // ANSYS-FEA',
+          status: 'SIMULATION SOLVED // MULTI-PHYSICS',
+          title: 'IC Engine Piston & Connecting Rod FEA',
+          subtitle: 'Static Structural & Steady-State Thermal Finite Element Analysis in ANSYS Mechanical',
+          meta: [
+            { label: 'SIMULATION PLATFORM', val: 'ANSYS Mechanical (Workbench)' },
+            { label: 'ANALYSIS DOMAINS', val: 'Static Structural + Steady-State Thermal' },
+            { label: 'PEAK DEFORMATION', val: '~0.1 mm (1.0003e-4 m)' },
+            { label: 'PEAK THERMAL DROP', val: '1530.8 °C down to ~601.9 °C' },
+            { label: 'PATH LINEARIZATION', val: 'Rod Shank: 35.9 µm → 8.9 µm' },
+            { label: 'TIMELINE', val: 'Sept 2026' }
+          ],
+          slotTopRight: {
+            type: 'image',
+            src: 'fea-piston-crown-displacement.png',
+            tag: 'FIG. 01 / LINEARIZED PATH',
+            alt: 'Connecting Rod Shank Linearized Path Graph: 35.9 µm down to 8.9 µm',
+            caption: 'Connecting Rod Shank Linearized Displacement Gradient',
+            typeTag: 'PATH GRAPH'
+          },
+          slotBottom1: {
+            type: 'image',
+            src: 'Static Structural Ansys.gif',
+            tag: 'FIG. 02 / STATIC SIMULATION',
+            alt: 'ANSYS Mechanical Static Structural Total Deformation Animation',
+            caption: 'Static Structural Total Deformation Simulation (~0.1 mm peak)',
+            typeTag: 'ANIMATED GIF'
+          },
+          slotBottom2: {
+            type: 'image',
+            src: 'Steady State Thermal.gif',
+            tag: 'FIG. 03 / THERMAL SIMULATION',
+            alt: 'ANSYS Mechanical Steady-State Thermal Conduction Animation',
+            caption: 'Steady-State Thermal Conduction & Flame Dissipation Field',
+            typeTag: 'ANIMATED GIF'
+          },
+          overviewHtml: `
+            <p class="modal-p">
+              Conducted a comprehensive Finite Element Analysis (FEA) on an internal combustion (IC) engine piston and connecting rod assembly using <strong>ANSYS Mechanical</strong>. The investigation evaluated structural deformation under peak mechanical combustion pressure and internal thermal conduction pathways under intense flame exposure.
+            </p>
+            <p class="modal-p">
+              Solving both <strong>Static Structural</strong> and <strong>Steady-State Thermal</strong> models provided quantitative data on mechanical compliance, localized stress concentrations, and thermal dissipation pathways across the assembly under extreme operational boundaries.
+            </p>
+          `,
+          bodyHtml: `
+            <div class="modal-metrics-grid">
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">~0.1 mm</div>
+                <div class="modal-metric-label">PEAK TOTAL DEFORMATION (1.0003e-4 m)</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">1530.8 °C</div>
+                <div class="modal-metric-label">COMBUSTION CROWN PEAK FLAME TEMP</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">601.9 °C</div>
+                <div class="modal-metric-label">UNDERCROWN INTERNAL CONDUCTION DROP</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">35.9 → 8.9 µm</div>
+                <div class="modal-metric-label">ROD SHANK LINEARIZED DISPLACEMENT</div>
+              </div>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">02 / Static Structural Finite Element Analysis</div>
+              <ul class="modal-points-list">
+                <li><strong>Constraints &amp; Boundary Conditions:</strong> Applied a cylindrical fixed constraint at the crank pin bore (simulating the rigid crankshaft journal boundary), while subjecting the top piston crown to maximum mechanical combustion gas pressure and directional inertial loads.</li>
+                <li><strong>Displacement Behavior:</strong> The solver computed a peak total deformation of <strong>~0.1 mm (1.0003&times;10⁻⁴ m)</strong>, localized primarily at the unsupported outer perimeter edge of the piston crown where bending compliance is highest.</li>
+                <li><strong>Path Linearization along Rod Shank:</strong> Instead of relying only on superficial 3D contour color plots, I scoped a linear path along the connecting rod shank. The extracted graph captured a clean displacement gradient from <strong>35.9 &mu;m down to 8.9 &mu;m</strong>, verifying uniform load compliance along the I-beam column and ensuring the structure remains well within elastic stability limits without risk of buckling.</li>
+              </ul>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">03 / Steady-State Thermal Finite Element Analysis</div>
+              <ul class="modal-points-list">
+                <li><strong>Thermal Boundary Conditions:</strong> Modeled direct combustion face exposure on the crown with film coefficients and convective heat dissipation along the lower skirt, ring lands, and undercrown interior geometry.</li>
+                <li><strong>Internal Conduction Gradient:</strong> Scoped a directional path through the thickness of the piston crown. This revealed a sharp, non-linear conduction temperature drop from <strong>1530.8 &deg;C down to ~601.9 &deg;C</strong>, providing a quantitative profile of how thermal energy redistributes into the skirt and piston rings toward the cylinder wall coolant jacket.</li>
+                <li><strong>Path Operations Advantage:</strong> Internal path operations provided quantitative cross-sectional insight into internal thermal gradients and localized heat pooling that standard exterior 3D surface contours fail to expose.</li>
+              </ul>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">04 / Next Step: Coupled Thermo-Mechanical Analysis</div>
+              <p class="modal-p">
+                The next phase couples both physics domains into a full <strong>Thermo-Mechanical (Thermal-Stress) FEA</strong>. This will map the temperature field directly as a body load into the structural solver to analyze how differential thermal expansion strain combines with combustion gas pressure to influence the equivalent von-Mises stress field and high-cycle thermal fatigue life.
+              </p>
+            </div>
+          `
+        },
+        'drilling': {
+          dwgRef: 'DWG REF: PRJ-02.4 // RES-BONE',
+          status: 'BEST PAPER AWARD // FOSET 2026',
+          title: 'Orthopaedic Drilling Parameter Optimization',
+          subtitle: 'Experimental Investigation to Reduce Thermal Damage & Thrust Force in Orthopaedic Drilling',
+          meta: [
+            { label: 'AWARD', val: 'Best Paper Presentation — FOSET 2026' },
+            { label: 'RESEARCH LAB', val: 'Kalyani Government Engineering College' },
+            { label: 'SPECIMEN', val: 'Fresh Goat Femur Cortical Bone' },
+            { label: 'DESIGN OF EXPERIMENTS', val: 'Taguchi L9 Orthogonal Array (3 &times; 3)' },
+            { label: 'OPTIMIZATION METHOD', val: 'Multi-Objective RSM in Minitab' },
+            { label: 'TIMELINE', val: 'Aug 2025 — Present' }
+          ],
+          slotTopRight: {
+            type: 'placeholder',
+            isVideo: false,
+            tag: 'FIG. 01 / RIG PHOTO',
+            title: 'Automated Mini-CNC Drilling Test Bench',
+            subtitle: 'Arduino Uno controlled stepper gantry for precise feed rate, spindle RPM, and plunge depth',
+            code: 'drilling-rig-photo.jpg',
+            caption: 'Custom Bone Drilling Mini-CNC Rig',
+            typeTag: 'PHOTO / RIG'
+          },
+          slotBottom1: {
+            type: 'placeholder',
+            isVideo: false,
+            tag: 'FIG. 02 / RSM PLOT',
+            title: 'Multi-Objective RSM Response Surface',
+            subtitle: 'Minitab 3D response surface mapping temperature (<45 °C) vs thrust force',
+            code: 'rsm-optimization-surface.png',
+            caption: 'Minitab Multi-Objective Response Surface',
+            typeTag: 'CHART / RSM'
+          },
+          slotBottom2: {
+            type: 'placeholder',
+            isVideo: true,
+            tag: 'FIG. 03 / VIDEO',
+            title: 'Experimental Bone Drilling & DAQ Run',
+            subtitle: 'Synchronized real-time recording: K-type thermocouples & load cell dynamometer on goat femur',
+            code: 'bone-drilling-experiment-daq.mp4',
+            caption: 'Live Experimental Testing & DAQ Logging',
+            typeTag: 'VIDEO (.MP4)'
+          },
+          overviewHtml: `
+            <p class="modal-p">
+              During orthopaedic procedures such as fracture fixation, bone plating, and screw implantation, surgical drilling into cortical bone generates high friction and localized heat. When bone tissue temperature surpasses the critical threshold of <strong>45&ndash;47 &deg;C</strong> for more than a few seconds, irreversible <strong>thermal osteonecrosis</strong> occurs—destroying osteocytes, impeding bone regeneration, and causing post-operative screw loosening or implant failure.
+            </p>
+            <p class="modal-p">
+              Concurrently, excessive axial thrust force applied by surgeons increases the risk of bone micro-cracking, structural delamination, and dangerous drill breakthrough into underlying neurovascular bundles.
+            </p>
+          `,
+          bodyHtml: `
+            <div class="modal-metrics-grid">
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">&lt; 45 °C</div>
+                <div class="modal-metric-label">CRITICAL THERMAL OSTEONECROSIS THRESHOLD</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">TAGUCHI L9</div>
+                <div class="modal-metric-label">3 FACTORS × 3 LEVELS EXPERIMENTAL DOE</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">MINI-CNC</div>
+                <div class="modal-metric-label">ARDUINO-CONTROLLED RIG FOR CONSISTENT FEED</div>
+              </div>
+              <div class="modal-metric-card">
+                <div class="modal-metric-num">FOSET 2026</div>
+                <div class="modal-metric-label">BEST PAPER PRESENTATION AWARD (16TH MEET)</div>
+              </div>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">02 / Automated Mini-CNC Drilling Rig Design</div>
+              <p class="modal-p">
+                To eliminate human hand tremor and uncontrolled manual feed rate variation during drilling tests, I designed and fabricated an automated, low-cost <strong>mini-CNC drilling test rig</strong>:
+              </p>
+              <ul class="modal-points-list">
+                <li><strong>Actuation &amp; Control:</strong> Driven by precision NEMA stepper motors and an <strong>Arduino Uno microcontroller</strong> with CNC shield, enabling exact programmable control over feed rate (mm/min), spindle RPM, and drilling depth.</li>
+                <li><strong>Rigidity:</strong> Custom rigid aluminum extrusion gantry minimizing vibration and axial compliance during cortical bone penetration.</li>
+              </ul>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">03 / Experimental Methodology &amp; Instrumentation</div>
+              <table class="modal-spec-table">
+                <thead>
+                  <tr>
+                    <th>ELEMENT</th>
+                    <th>EXPERIMENTAL SETUP &amp; PROTOCOL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Specimens</td>
+                    <td>Cortical bone sections harvested from fresh goat femur diaphysis (chosen for density and mechanical similarity to human cortical bone).</td>
+                  </tr>
+                  <tr>
+                    <td>DOE Matrix</td>
+                    <td><strong>Taguchi L9 orthogonal array</strong> design exploring 3 factors at 3 levels: Spindle Speed (RPM), Feed Rate (mm/min), and Drill Bit Diameter (mm).</td>
+                  </tr>
+                  <tr>
+                    <td>Temperature DAQ</td>
+                    <td>Embedded ultra-fine <strong>K-type thermocouples</strong> placed at calibrated radial distances from the drill hole periphery, logging real-time thermal curves.</td>
+                  </tr>
+                  <tr>
+                    <td>Force &amp; MRR DAQ</td>
+                    <td>Mounted specimen on a precision <strong>load cell dynamometer</strong> to continuously record instantaneous axial thrust force and compute Material Removal Rate (MRR).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">04 / Statistical Modeling &amp; Multi-Objective RSM Optimization</div>
+              <ul class="modal-points-list">
+                <li><strong>Minitab Regression:</strong> Developed quadratic regression equations in <strong>Minitab</strong> modeling the nonlinear interactions between cutting parameters, peak temperature, and thrust force.</li>
+                <li><strong>Response Surface Methodology (RSM):</strong> Executed multi-objective RSM optimization to determine the optimal parametric combination that simultaneously:
+                  <br>1. Keeps peak cortical bone temperature safely below the 45 &deg;C necrosis ceiling.
+                  <br>2. Minimizes peak axial thrust force to eliminate micro-fractures without sacrificing drilling throughput.</li>
+                <li><strong>Academic Recognition:</strong> The paper was awarded <strong>Best Paper Presentation</strong> at the 16th Academic Meet of the Forum of Scientists, Engineers &amp; Technologists (FOSET 2026).</li>
+              </ul>
+            </div>
+          `
+        }
+      };
+
+      // Modal DOM Elements
+      var modalOverlay = document.getElementById('projectModal');
+      var modalCloseBtn = document.getElementById('modalCloseBtn');
+      var modalDwgRef = document.getElementById('modalDwgRef');
+      var modalStatus = document.getElementById('modalStatus');
+      var modalTitle = document.getElementById('modalTitle');
+      var modalSubtitle = document.getElementById('modalSubtitle');
+      var modalMetaStrip = document.getElementById('modalMetaStrip');
+      var modalBody = document.getElementById('modalBody');
+
+      function openModal(projectKey) {
+        var data = PROJECTS[projectKey];
+        if (!data) return;
+
+        modalDwgRef.textContent = data.dwgRef;
+        modalStatus.innerHTML = data.status;
+        modalTitle.textContent = data.title;
+        modalSubtitle.textContent = data.subtitle;
+
+        // Populate Meta Strip
+        modalMetaStrip.innerHTML = '';
+        if (data.meta && data.meta.length) {
+          data.meta.forEach(function (m) {
+            var cell = document.createElement('div');
+            cell.className = 'modal-meta-cell';
+            cell.innerHTML = '<span class="modal-meta-label">' + m.label + '</span><span class="modal-meta-val">' + m.val + '</span>';
+            modalMetaStrip.appendChild(cell);
+          });
+        }
+
+        // Assemble Body with Top-Right Wrapped Slot & Bottom Media Grid
+        var bodyContent = '';
+
+        // Section 01 with wrapped Top-Right media slot
+        bodyContent += '<div class="modal-section">' +
+          '<div class="modal-section-title">01 / Project Overview &amp; Engineering Context</div>' +
+          '<div class="modal-media-wrap-right">' +
+          renderMediaSlot(data.slotTopRight) +
+          '</div>' +
+          data.overviewHtml +
+          '<div style="clear:both;"></div>' +
+          '</div>';
+
+        // Main technical body
+        bodyContent += data.bodyHtml;
+
+        // Section 05: Bottom 2-Media Slots (Photo / Video)
+        bodyContent += '<div class="modal-section" style="margin-top:16px;">' +
+          '<div class="modal-section-title">05 / Visual Documentation &amp; Technical Media [Photo / Video Slots]</div>' +
+          '<div class="modal-bottom-media-grid">' +
+          renderMediaSlot(data.slotBottom1) +
+          renderMediaSlot(data.slotBottom2) +
+          '</div>' +
+          '</div>';
+
+        modalBody.innerHTML = bodyContent;
+
+        // Show Modal
+        modalOverlay.style.display = 'flex';
+        modalBody.scrollTop = 0;
+        setTimeout(function () {
+          modalOverlay.classList.add('open');
+          modalOverlay.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          if (modalCloseBtn) modalCloseBtn.focus();
+        }, 10);
+      }
+
+      function closeModal() {
+        if (modalBody) {
+          var vids = modalBody.querySelectorAll('video');
+          vids.forEach(function (v) { v.pause(); });
+        }
+        modalOverlay.classList.remove('open');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(function () {
+          modalOverlay.style.display = 'none';
+        }, 280);
+      }
+
+      // Close handlers
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+      }
+
+      if (modalOverlay) {
+        modalOverlay.addEventListener('click', function (e) {
+          if (e.target === modalOverlay) {
+            closeModal();
+          }
+        });
+      }
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('open')) {
+          closeModal();
+        }
+      });
+
+      // Attach click events to project triggers
+      document.querySelectorAll('.proj-card').forEach(function (card) {
+        var pKey = card.getAttribute('data-project');
+        if (!pKey) return;
+
+        // Triggers: card h3, card .proj-frame, card .proj-open-btn
+        var triggers = card.querySelectorAll('.proj-trigger, h3, .proj-frame, .proj-open-btn');
+        triggers.forEach(function (trigger) {
+          trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal(pKey);
+          });
+          trigger.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openModal(pKey);
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
