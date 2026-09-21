@@ -12,6 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="/lanyard/Lanyard.css">
   <style>
     :root {
       --blue-0: #0B2540;
@@ -1777,37 +1778,7 @@
         </div>
       </div>
 
-      <div class="hero-draw">
-        <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg">
-          <!-- kart chassis wireframe -->
-          <path class="blueline draw-anim"
-            d="M70 260 L120 260 L150 200 L360 200 L400 150 L460 150 L470 175 L460 260 L500 260" />
-          <path class="blueline draw-anim d2" d="M150 200 L170 260 M240 200 L250 260 M300 150 L300 200" />
-          <path class="blueline draw-anim d2" d="M300 150 L400 150" />
-          <!-- seat -->
-          <path class="blueline draw-anim d2" d="M230 150 L300 150 L300 200 L220 200 Z" />
-          <!-- roll hoop -->
-          <path class="blueline draw-anim d3" d="M330 150 C330 105, 400 105, 400 150" />
-          <!-- steering column -->
-          <path class="blueline draw-anim d3" d="M170 200 L150 160 L165 150" />
-          <!-- wheels -->
-          <circle class="blueline draw-anim" cx="120" cy="270" r="34" />
-          <circle class="blueline-amber draw-anim" cx="120" cy="270" r="6" />
-          <circle class="blueline draw-anim" cx="460" cy="270" r="34" />
-          <circle class="blueline-amber draw-anim" cx="460" cy="270" r="6" />
-          <!-- dimension line -->
-          <line class="blueline-dim" x1="86" y1="330" x2="494" y2="330" />
-          <line class="blueline-dim" x1="86" y1="322" x2="86" y2="338" />
-          <line class="blueline-dim" x1="494" y1="322" x2="494" y2="338" />
-          <text x="270" y="352" text-anchor="middle" class="dwg-label">1780 mm — WHEELBASE</text>
-          <!-- leader callouts -->
-          <line class="blueline-dim" x1="400" y1="150" x2="440" y2="90" />
-          <text x="444" y="86" class="dwg-label amber">CV-CATEGORY CHASSIS</text>
-          <line class="blueline-dim" x1="230" y1="175" x2="140" y2="120" />
-          <text x="30" y="116" class="dwg-label">TAARZAN — SAC-KGEC</text>
-          <text x="70" y="40" class="dwg-label">FIG. 01 — SIDE ELEVATION</text>
-        </svg>
-      </div>
+      <div class="hero-draw" id="lanyardHero" aria-label="Interactive portfolio ID lanyard"></div>
     </div>
   </section>
 
@@ -2841,6 +2812,7 @@
       });
     })();
   </script>
+  <script type="module" src="/lanyard/lanyard-integration.js"></script>
 </body>
 
 </html>
