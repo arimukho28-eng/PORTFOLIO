@@ -11,7 +11,7 @@
 
   // React + ReactDOM are loaded by this module.
   const React = await import('https://esm.sh/react@19.1.0');
-  const ReactDOM = await import('https://esm.sh/react-dom@19.1.0/client?external=react');
+  const ReactDOM = await import('https://esm.sh/react-dom@19.1.0/client?external=react&deps=react@19.1.0');
 
   // Babel is used only to turn the Lanyard component's JSX into browser JS.
   const babel = await import('https://esm.sh/@babel/standalone@7.26.10');
